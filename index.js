@@ -9,15 +9,17 @@ const find = (process.platform === 'win32') ? 'where zstd.exe' : 'which zstd';
 
 let bin;
 
-// try {
-//   bin = execSync(find, { env: process.env }).toString().replace(/\n$/, '').replace(/\r$/, '');
-// } catch (err) {
-//   throw new Error('Can not access zstd! Is it installed?');
-// }
+try {
+  bin = execSync(find, { env: process.env }).toString().replace(/\n$/, '').replace(/\r$/, '');
+} catch (err) {
+  throw new Error(err);
+  throw new Error('Can not access zstd! Is it installed?');
+}
 
 try {
   fs.accessSync(bin, fs.constants.X_OK);
 } catch (err) {
+  throw new Error(err);
   throw new Error('zstd is not executable');
 }
 
