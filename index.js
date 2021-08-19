@@ -5,7 +5,8 @@ const isZst = require('is-zst');
 const peek = require('peek-stream');
 const through = require('through2');
 
-const find = (process.platform === 'win32') ? 'where zstd.exe' : 'which zstd';
+// const find = (process.platform === 'win32') ? 'where zstd.exe' : 'which zstd';
+const find = '/opt/bin/which zstd'
 
 let bin;
 
